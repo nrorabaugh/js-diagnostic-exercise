@@ -1,6 +1,7 @@
 // Store accounts, inputs, balances, and buttons inside variables
 // Translated variables into objects with properties by account
 // Write deposit functions as methods inside account objects 
+// Add withdraw functions as methods
 
 let savings = document.getElementById('savings')
 let checking = document.getElementById('checking')
@@ -14,6 +15,11 @@ let save = {
         let amt = parseInt(save.input.value)
         let bal = parseInt(save.balance.innerHTML)
         save.balance.innerHTML = bal + amt
+    },
+    withdraw: function() {
+        let amt = parseInt(save.input.value)
+        let bal = parseInt(save.balance.innerHTML)
+        save.balance.innerHTML = bal - amt
     }
 }
 
@@ -26,6 +32,13 @@ let check = {
         let amt = parseInt(check.input.value)
         let bal = parseInt(check.balance.innerHTML)
         check.balance.innerHTML = bal + amt
+    },
+    withdraw: function() {
+        let amt = parseInt(check.input.value)
+        let bal = parseInt(check.balance.innerHTML)
+        check.balance.innerHTML = bal - amt
     }
 }
+
+
 
