@@ -14,21 +14,27 @@ let save = {
     balance: savings.getElementsByClassName('balanceNum')[0],
     input: savings.getElementsByClassName('input')[0],
     deposit: function() {
-        let amt = parseInt(save.input.value)
-        let bal = parseInt(save.balance.innerHTML)
-        save.balance.innerHTML = bal + amt
+        save.balance.innerHTML = parseInt(save.balance.innerHTML) + parseInt(save.input.value)
             if(save.balance.innerHTML > 0){
                 savings.classList.remove('zero')
             }
     },
     withdraw: function() {
-        let amt = parseInt(save.input.value)
-        let bal = parseInt(save.balance.innerHTML)
-            if(amt > bal) {
-                alert('Not enough money!')
+            if(parseInt(save.input.value) > parseInt(save.balance.innerHTML)) {
+                let diff = parseInt(save.input.value) - parseInt(save.balance.innerHTML)
+                if(diff > parseInt(check.balance.innerHTML)) {
+                    alert('Not enough money!')
+                    return
+                } else {
+                check.balance.innerHTML -= diff
+                if(check.balance.innerHTML == 0) {
+                    checking.className = 'account zero'
+                }
+                save.balance.innerHTML = 0
                 return
+                }
             }
-        save.balance.innerHTML = bal - amt
+        save.balance.innerHTML = parseInt(save.balance.innerHTML) - parseInt(save.input.value)
             if(save.balance.innerHTML == 0) {
                 savings.className = 'account zero'
             }
@@ -41,21 +47,27 @@ let check = {
     balance: checking.getElementsByClassName('balanceNum')[0],
     depo: checking.getElementsByClassName('deposit')[0],
     deposit: function() {
-        let amt = parseInt(check.input.value)
-        let bal = parseInt(check.balance.innerHTML)
-        check.balance.innerHTML = bal + amt
+        check.balance.innerHTML = parseInt(check.balance.innerHTML) + parseInt(check.input.value)
             if(check.balance.innerHTML > 0){
                 checking.classList.remove('zero')
             }
     },
     withdraw: function() {
-        let amt = parseInt(check.input.value)
-        let bal = parseInt(check.balance.innerHTML)
-            if(amt > bal) {
-                alert('Not enough money!')
+            if(parseInt(check.input.value) > parseInt(check.balance.innerHTML)) {
+                let diff = parseInt(check.input.value) - parseInt(check.balance.innerHTML)
+                if(diff > parseInt(save.balance.innerHTML)) {
+                    alert('Not enough money!')
+                    return
+                } else {
+                save.balance.innerHTML -= diff
+                if(save.balance.innerHTML == 0) {
+                    savings.className = 'account zero'
+                }
+                check.balance.innerHTML = 0
                 return
             }
-        check.balance.innerHTML = bal - amt
+        }
+        check.balance.innerHTML = parseInt(check.balance.innerHTML) - parseInt(check.input.value)
             if(check.balance.innerHTML == 0) {
                 checking.className = 'account zero'
             }
