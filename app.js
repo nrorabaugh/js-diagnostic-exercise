@@ -2,6 +2,7 @@
 // Translated variables into objects with properties by account
 // Write deposit functions as methods inside account objects 
 // Add withdraw functions as methods
+// Add event listeners to the buttons for the methods
 
 let savings = document.getElementById('savings')
 let checking = document.getElementById('checking')
@@ -39,6 +40,11 @@ let check = {
         check.balance.innerHTML = bal - amt
     }
 }
+
+save.depo.addEventListener('click', save.deposit)
+save.wdraw.addEventListener('click', save.withdraw)
+check.depo.addEventListener('click', check.deposit)
+check.wdraw.addEventListener('click', check.withdraw)
 
 
 
