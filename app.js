@@ -3,6 +3,7 @@
 // Write deposit functions as methods inside account objects 
 // Add withdraw functions as methods
 // Add event listeners to the buttons for the methods
+// Add non-negative and zero-class functionality to methods
 
 let savings = document.getElementById('savings')
 let checking = document.getElementById('checking')
@@ -16,11 +17,21 @@ let save = {
         let amt = parseInt(save.input.value)
         let bal = parseInt(save.balance.innerHTML)
         save.balance.innerHTML = bal + amt
+            if(save.balance.innerHTML > 0){
+                savings.classList.remove('zero')
+            }
     },
     withdraw: function() {
         let amt = parseInt(save.input.value)
         let bal = parseInt(save.balance.innerHTML)
+            if(amt > bal) {
+                alert('Not enough money!')
+                return
+            }
         save.balance.innerHTML = bal - amt
+            if(save.balance.innerHTML == 0) {
+                savings.className = 'account zero'
+            }
     }
 }
 
@@ -33,11 +44,21 @@ let check = {
         let amt = parseInt(check.input.value)
         let bal = parseInt(check.balance.innerHTML)
         check.balance.innerHTML = bal + amt
+            if(check.balance.innerHTML > 0){
+                checking.classList.remove('zero')
+            }
     },
     withdraw: function() {
         let amt = parseInt(check.input.value)
         let bal = parseInt(check.balance.innerHTML)
+            if(amt > bal) {
+                alert('Not enough money!')
+                return
+            }
         check.balance.innerHTML = bal - amt
+            if(check.balance.innerHTML == 0) {
+                checking.className = 'account zero'
+            }
     }
 }
 
